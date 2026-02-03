@@ -36,9 +36,7 @@ Indexes enable:
 * Sorting
 * Aggregation
 
-## Iterations
-
-### 1. Find Movies by Title Prefix
+## 1. Find Movies by Title Prefix
 
 Find movies that start with "The Lord of the Rings".
 
@@ -46,17 +44,33 @@ Find movies that start with "The Lord of the Rings".
 FT.SEARCH idx:movies "The Lord of the Rings*"
 ```
 
-### 2. Find Movies Released After 2010
+## 2. Find Movies Released After 2010
 
-### 3. Get Movies by Genre
+```sh
+FT.SEARCH idx:movies "@year:[2011 +inf]"
+```
+
+## 3. Get Movies by Genre
 
 Find all movies labeled as "Action".
 
-### 4. Get Movies with Ratings Between 7 and 9
+```sh
+FT.SEARCH idx:movies "@genre:{Action}"
+```
 
-### 5. Get Top-Rated Movies
+## 4. Get Movies with Ratings Between 7 and 9
+
+```sh
+FT.SEARCH idx:movies "@rating:[7 9]"
+```
+
+## 5. Get Top-Rated Movies
 
 Retrieve the top 5 highest-rated movies.
+
+```sh
+FT.SEARCH idx:movies "*" SORTBY rating DESC LIMIT 0 5
+```
 
 ## Additional Challenges
 
@@ -64,8 +78,6 @@ Retrieve the top 5 highest-rated movies.
 * Find Action movies released after 2015 with a rating above 8
 * Compare performance between Basic Redis queries and RediSearch queries
 
-## Extra Resources
-
-- [Getting Started with RediSearch 2.0](https://github.com/RediSearch/redisearch-getting-started)
+---
 
 **Happy querying!** :rocket:
